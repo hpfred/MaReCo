@@ -20,12 +20,10 @@ defmodule PolyHok.MixProject do
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
-    [   {:matrex, "~> 0.6"},
-      {:nx, "~> 0.9.2"},
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
-      {:exla, "~> 0.9"},
-      {:torchx, "~> 0.9"}
-    ]
+  [
+    {:nx, "~> 0.9"},
+    {:poly_hok, git: "https://github.com/lups-ufpel/poly_hok.git", sparse: "poly_hok"},
+    {:cuda_backend, git: "https://github.com/lups-ufpel/poly_hok.git", sparse: "backends/cuda_backend"}
+  ]
   end
 end
