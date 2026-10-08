@@ -1654,7 +1654,7 @@ PolyHok.defmodule Ske do
     size = l1*step1
     # size = l1
     nBlocks = floor ((size + block_size - 1) / block_size)
-    ret = PolyHok.new_gnx(PolyHok.get_shape(d_array1),PolyHok.get_type(d_array1))
+    ret = PolyHok.new_gnx(PolyHok.get_shape_gnx(d_array1),PolyHok.get_type_gnx(d_array1))
 
     PolyHok.spawn(&Ske.map2_0para_1D_resp_kernel/6,{nBlocks,1,1},{block_size,1,1},[d_array1,d_array2,ret,step1,size,f])
     # PolyHok.spawn(&Ske.map2_0para_1D_resp_kernel/6,{nBlocks,1,1},{block_size,1,1},[d_array1,d_array2,ret,size,step1,f])
