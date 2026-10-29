@@ -95,27 +95,35 @@ result = Ske.map(a, fun, [])
 
 The general form of the *Map* skeleton is
 
-$$\texttt{map(<gnx...>, <function> [, params...] [, options])} \rightarrow \texttt{gnx}$$
+```text
+map(<gnx...>, <function> [, params...] [, options]) -> gnx
+```
 
 where the invocation receives one to three GNX structures, the function to be executed, an optional list of up to three auxiliary parameters, and a list of configuration options. The auxiliary parameters are forwarded unchanged to every invocation of the user-defined function, which allows computations of different arities to be expressed through the same skeleton.
 
 The *Reduce* skeleton aggregates a single GNX according to
 
-$$\texttt{reduce(<gnx>, <initial>, <function>)} \rightarrow \texttt{value}$$
+```text
+reduce(<gnx>, <initial>, <function>) -> value
+```
 
 where `initial` is the initial accumulator value and the function must be associative, so that different evaluation orders produce the same result.
 
 ### Map configuration options
 
-$$[\texttt{coord: true|\underline{false}},\ \texttt{return: \underline{true}|false},\ \texttt{dim: \underline{:one}|:two}]$$
+```text
+coord:  true | false
+return: true | false
+dim:    :one | :two
+```
 
-| Option | Description |
-| --- | --- |
-| `coord` | Passes the coordinates of the processed element as additional arguments to the function, allowing position-aware computations. |
-| `return` | Specifies whether the function produces a value stored in a newly allocated GNX, or whether no output GNX is allocated and the function handles the result directly through the provided GNX structures. |
-| `dim` | Specifies whether the computation is interpreted over one- or two-dimensional data. |
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `coord` | boolean | `false` | Passes the coordinates of the processed element as additional arguments to the function, allowing position-aware computations. |
+| `return` | boolean | `true` | Specifies whether the function produces a value stored in a newly allocated GNX, or whether no output GNX is allocated and the function handles the result directly through the provided GNX structures. |
+| `dim` | atom | `:one` | Specifies whether the computation is interpreted over one- or two-dimensional data. |
 
-Omitted options assume the underlined default values. The combination of these options with the number of input structures and auxiliary parameters determines which specialized implementation MaReCo dispatches internally, so that a single `Ske.map` call expresses patterns that would otherwise require multiple skeleton abstractions.
+Omitted options assume their default values. The combination of these options with the number of input structures and auxiliary parameters determines which specialized implementation MaReCo dispatches internally, so that a single `Ske.map` call expresses patterns that would otherwise require multiple skeleton abstractions.
 
 <details>
 <summary><strong>Note: structured data</strong></summary>
